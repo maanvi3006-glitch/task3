@@ -1,0 +1,152 @@
+[
+  {
+    "timestamp": "2026-08-15T08:15:44+00:00",
+    "stage": "1_ingest",
+    "description": "Read raw source 'orders' from Transactional Order DB (OLTP)",
+    "owner": "Backend/Order Systems Team",
+    "rows_in": null,
+    "rows_out": 20,
+    "extra": {
+      "file": "orders.csv",
+      "update_frequency": "Daily (batch export, 02:00 UTC)"
+    }
+  },
+  {
+    "timestamp": "2026-08-15T08:15:44+00:00",
+    "stage": "1_ingest",
+    "description": "Read raw source 'customers' from CRM (customer master)",
+    "owner": "CRM/Sales Ops Team",
+    "rows_in": null,
+    "rows_out": 10,
+    "extra": {
+      "file": "customers.csv",
+      "update_frequency": "Weekly (Monday export)"
+    }
+  },
+  {
+    "timestamp": "2026-08-15T08:15:44+00:00",
+    "stage": "1_ingest",
+    "description": "Read raw source 'products' from Product Catalog Service",
+    "owner": "Catalog/Merchandising Team",
+    "rows_in": null,
+    "rows_out": 5,
+    "extra": {
+      "file": "products.csv",
+      "update_frequency": "Monthly, or on new SKU launch"
+    }
+  },
+  {
+    "timestamp": "2026-08-15T08:15:44+00:00",
+    "stage": "1_ingest",
+    "description": "Read raw source 'web_events' from Web Analytics / Clickstream Collector",
+    "owner": "Growth/Analytics Engineering Team",
+    "rows_in": null,
+    "rows_out": 36,
+    "extra": {
+      "file": "web_events.csv",
+      "update_frequency": "Hourly (streamed, hourly rollup)"
+    }
+  },
+  {
+    "timestamp": "2026-08-15T08:15:44+00:00",
+    "stage": "2_clean",
+    "description": "De-duplicated on order_id, coerced order_date to datetime and order_amount to numeric, dropped rows with missing amount/customer_id",
+    "owner": "Data Engineering",
+    "rows_in": 20,
+    "rows_out": 20
+  },
+  {
+    "timestamp": "2026-08-15T08:15:44+00:00",
+    "stage": "2_clean",
+    "description": "De-duplicated customer master on customer_id",
+    "owner": "Data Engineering",
+    "rows_in": 10,
+    "rows_out": 10
+  },
+  {
+    "timestamp": "2026-08-15T08:15:44+00:00",
+    "stage": "2_clean",
+    "description": "De-duplicated product catalog on product_id",
+    "owner": "Data Engineering",
+    "rows_in": 5,
+    "rows_out": 5
+  },
+  {
+    "timestamp": "2026-08-15T08:15:44+00:00",
+    "stage": "2_clean",
+    "description": "Parsed event_date to datetime; validated event_type against known set",
+    "owner": "Analytics Engineering",
+    "rows_in": 36,
+    "rows_out": 36
+  },
+  {
+    "timestamp": "2026-08-15T08:15:44+00:00",
+    "stage": "3_enrich",
+    "description": "Left-joined orders -> customers (on customer_id) -> products (on product_id) to attach region and category context",
+    "owner": "Analytics Engineering",
+    "rows_in": 20,
+    "rows_out": 20
+  },
+  {
+    "timestamp": "2026-08-15T08:15:44+00:00",
+    "stage": "4_aggregate",
+    "description": "Total Revenue = SUM(order_amount) WHERE status = 'completed'",
+    "owner": "Analytics (Data Analyst)",
+    "rows_in": 20,
+    "rows_out": 17,
+    "extra": {
+      "metric": "total_revenue",
+      "value": 18711.48
+    }
+  },
+  {
+    "timestamp": "2026-08-15T08:15:44+00:00",
+    "stage": "4_aggregate",
+    "description": "Average Order Value = Total Revenue / COUNT(completed orders)",
+    "owner": "Analytics (Data Analyst)",
+    "rows_in": 17,
+    "rows_out": 1,
+    "extra": {
+      "metric": "avg_order_value",
+      "value": 1100.68
+    }
+  },
+  {
+    "timestamp": "2026-08-15T08:15:44+00:00",
+    "stage": "4_aggregate",
+    "description": "Active Customers = COUNT(DISTINCT customer_id) with a completed order on/after 2026-06-14 (last 30 days of observed data)",
+    "owner": "Analytics (Data Analyst)",
+    "rows_in": 17,
+    "rows_out": 10,
+    "extra": {
+      "metric": "active_customers",
+      "value": 10
+    }
+  },
+  {
+    "timestamp": "2026-08-15T08:15:44+00:00",
+    "stage": "4_aggregate",
+    "description": "Conversion Rate = (sessions with a purchase event / total sessions) * 100",
+    "owner": "Growth/Analytics Engineering",
+    "rows_in": 20,
+    "rows_out": 16,
+    "extra": {
+      "metric": "conversion_rate_pct",
+      "value": 80.0
+    }
+  },
+  {
+    "timestamp": "2026-08-15T08:15:44+00:00",
+    "stage": "5_publish",
+    "description": "Wrote reporting-layer table (enriched_orders.csv) and metrics_summary.json consumed by the dashboard",
+    "owner": "Analytics (Data Analyst)",
+    "rows_in": 20,
+    "rows_out": 20,
+    "extra": {
+      "outputs": [
+        "enriched_orders.csv",
+        "metrics_summary.json"
+      ]
+    }
+  }
+]

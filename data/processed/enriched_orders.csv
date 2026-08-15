@@ -1,0 +1,21 @@
+order_id,customer_id,order_date,status,order_amount,product_id,customer_name,signup_date,region,email,product_name,category,unit_cost
+O1001,C001,2026-07-01,completed,1499.0,P01,Aarav Sharma,2025-11-02,North,aarav.s@example.com,Wireless Mouse,Electronics,650.0
+O1002,C002,2026-07-01,completed,899.5,P02,Priya Nair,2025-12-14,South,priya.n@example.com,Bluetooth Speaker,Electronics,420.0
+O1003,C001,2026-07-02,cancelled,2100.0,P03,Aarav Sharma,2025-11-02,North,aarav.s@example.com,Office Chair,Furniture,1100.0
+O1004,C003,2026-07-02,completed,349.0,P04,Rohan Mehta,2026-01-05,West,rohan.m@example.com,Notebook Set,Stationery,150.0
+O1005,C004,2026-07-03,completed,1250.0,P01,Sneha Iyer,2026-01-20,South,sneha.i@example.com,Wireless Mouse,Electronics,650.0
+O1006,C002,2026-07-03,completed,499.99,P05,Priya Nair,2025-12-14,South,priya.n@example.com,Desk Lamp,Furniture,220.0
+O1007,C005,2026-07-04,completed,760.0,P02,Karan Verma,2026-02-11,North,karan.v@example.com,Bluetooth Speaker,Electronics,420.0
+O1008,C001,2026-07-05,completed,2199.0,P03,Aarav Sharma,2025-11-02,North,aarav.s@example.com,Office Chair,Furniture,1100.0
+O1009,C006,2026-07-05,refunded,150.0,P04,Ananya Gupta,2026-03-03,East,ananya.g@example.com,Notebook Set,Stationery,150.0
+O1010,C003,2026-07-06,completed,899.5,P02,Rohan Mehta,2026-01-05,West,rohan.m@example.com,Bluetooth Speaker,Electronics,420.0
+O1011,C007,2026-07-07,completed,1599.0,P01,Vikram Rao,2026-03-19,West,vikram.r@example.com,Wireless Mouse,Electronics,650.0
+O1012,C004,2026-07-08,completed,349.0,P04,Sneha Iyer,2026-01-20,South,sneha.i@example.com,Notebook Set,Stationery,150.0
+O1013,C008,2026-07-08,completed,2450.0,P03,Ishita Kapoor,2026-04-02,North,ishita.k@example.com,Office Chair,Furniture,1100.0
+O1014,C002,2026-07-09,completed,499.99,P05,Priya Nair,2025-12-14,South,priya.n@example.com,Desk Lamp,Furniture,220.0
+O1015,C009,2026-07-10,completed,760.0,P02,Aditya Joshi,2026-05-08,East,aditya.j@example.com,Bluetooth Speaker,Electronics,420.0
+O1016,C005,2026-07-10,cancelled,1499.0,P01,Karan Verma,2026-02-11,North,karan.v@example.com,Wireless Mouse,Electronics,650.0
+O1017,C010,2026-07-11,completed,899.5,P02,Meera Pillai,2026-06-01,South,meera.p@example.com,Bluetooth Speaker,Electronics,420.0
+O1018,C006,2026-07-12,completed,349.0,P04,Ananya Gupta,2026-03-03,East,ananya.g@example.com,Notebook Set,Stationery,150.0
+O1019,C001,2026-07-13,completed,1250.0,P01,Aarav Sharma,2025-11-02,North,aarav.s@example.com,Wireless Mouse,Electronics,650.0
+O1020,C007,2026-07-14,completed,2199.0,P03,Vikram Rao,2026-03-19,West,vikram.r@example.com,Office Chair,Furniture,1100.0
